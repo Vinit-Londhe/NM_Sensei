@@ -16,7 +16,7 @@ const ResultScreen = ({ route }) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      
+
       <Text style={styles.resultText}>Result</Text>
       <Text style={styles.msg}>{result.message}</Text>
 
@@ -39,13 +39,13 @@ const ResultScreen = ({ route }) => {
 };
 
 const styles = StyleSheet.create({
-  msg:{
-    fontSize:20,
-    color:'green',
-    fontWeight:'bold',
-    alignSelf:'center',
-    paddingVertical:10,
-    paddingBottom:10
+  msg: {
+    fontSize: 20,
+    color: 'green',
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    paddingVertical: 10,
+    paddingBottom: 10
   },
   container: {
     flex: 1,
@@ -57,7 +57,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     marginTop: 10,
-    marginBottom:10
+    marginBottom: 10
   },
   row: {
     flexDirection: 'row',

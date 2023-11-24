@@ -21,15 +21,15 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="light" />
       <Stack.Navigator initialRouteName="Home">
-        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }}  />
+        <Stack.Screen name="Home" component={Home} options={{ headerShown: false }} />
         <Stack.Screen name="Uone" component={Uone} />
-         <Stack.Screen name="Bisection" component={Bisection} options={{ headerShown: false }}/>
-         <Stack.Screen name="NR" component={NewtonRaphson} options={{ headerShown: false }}/>
-         <Stack.Screen name="NRR" component={NRResult} options={{ headerShown: false }}/>
+        <Stack.Screen name="Bisection" component={Bisection} options={{ headerShown: false }} />
+        <Stack.Screen name="NR" component={NewtonRaphson} options={{ headerShown: false }} />
+        <Stack.Screen name="NRR" component={NRResult} options={{ headerShown: false }} />
 
-         <Stack.Screen name="RF" component={RegulaFalsi} options={{ headerShown: false }}/>
-         <Stack.Screen name="RFResult" component={RFResult} options={{ headerShown: false }}/>
-         <Stack.Screen name="Result" component={ResultScreen}  options={{ headerShown: false }}/>
+        <Stack.Screen name="RF" component={RegulaFalsi} options={{ headerShown: false }} />
+        <Stack.Screen name="RFResult" component={RFResult} options={{ headerShown: false }} />
+        <Stack.Screen name="Result" component={ResultScreen} options={{ headerShown: false }} />
 
 
       </Stack.Navigator>

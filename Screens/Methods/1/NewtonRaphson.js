@@ -12,35 +12,35 @@ export default function NewtonRaphson() {
   const navigation = useNavigation(); // Use the useNavigation hook to get the navigation object
 
   const handleSubmit = async () => {
-    try {
-      const response = await fetch('http://192.168.29.233:5000/api/bisection', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          func,
-          a: parseFloat(a),
-          b: parseFloat(b),
-          tolerance: parseFloat(tolerableError),
-          maxIterations: parseInt(maxIterations),
-        }),
-      });
+    // try {
+    //   const response = await fetch('http://192.168.29.233:5000/api/bisection', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       func,
+    //       a: parseFloat(a),
+    //       b: parseFloat(b),
+    //       tolerance: parseFloat(tolerableError),
+    //       maxIterations: parseInt(maxIterations),
+    //     }),
+    //   });
 
-      const result = await response.json();
-      console.log('Result',result)
-      navigation.navigate('NRR');
-      // here I want to go to the next screen with result
-  
-    } catch (error) {
-      console.error('Error:', error);
-    }
+    //   const result = await response.json();
+    //   console.log('Result', result)
+    navigation.navigate('NRR');
+    // here I want to go to the next screen with result
+
+    // } catch (error) {
+    //   console.error('Error:', error);
+    // }
   };
 
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.heading}>NewtonRaphson Method</Text>
+        <Text style={styles.heading}>NewtonRaphson </Text>
 
         <TextInput
           style={styles.input}
@@ -98,22 +98,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    
-  
+
+
   },
   formContainer: {
     width: '80%',
-    marginVertical:120
+    marginVertical: 120
   },
   heading: {
     fontSize: 34,
     fontWeight: 'bold',
     marginBottom: 40,
     color: 'white',
-    alignSelf:'center',
+    alignSelf: 'center',
 
 
-    
+
   },
   input: {
     height: 40,

@@ -28,10 +28,10 @@ export default function RegulaFalsi() {
       });
 
       const result = await response.json();
-      console.log('RFResult',result)
-      navigation.navigate('RFResult',{result});
+      console.log('RFResult', result)
+      navigation.navigate('RFResult', { result });
       // here I want to go to the next screen with result
-  
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -98,22 +98,22 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: 'black',
     alignItems: 'center',
-    
-  
+
+
   },
   formContainer: {
     width: '80%',
-    marginVertical:120
+    marginVertical: 120
   },
   heading: {
     fontSize: 40,
     fontWeight: 'bold',
     marginBottom: 40,
     color: 'white',
-    alignSelf:'center',
+    alignSelf: 'center',
 
 
-    
+
   },
   input: {
     height: 40,
