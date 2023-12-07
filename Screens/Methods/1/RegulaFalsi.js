@@ -13,7 +13,7 @@ export default function RegulaFalsi() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://192.168.29.233:5000/api/false_position', {
+      const response = await fetch('http://172.20.10.5:5000/api/false_position', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -40,13 +40,15 @@ export default function RegulaFalsi() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.heading}>RegulaFalsi Method</Text>
+        <Text style={styles.heading}>Regula Falsi Method</Text>
 
         <TextInput
           style={styles.input}
           onChangeText={onChangeFunctionText}
           placeholder="Enter Function"
           placeholderTextColor="white"
+          fontWeight= "100"
+          
         />
 
         <TextInput
@@ -56,6 +58,8 @@ export default function RegulaFalsi() {
           placeholderTextColor="white"
           keyboardType="numeric"
           value={a}
+          fontWeight= "100"
+
         />
 
         <TextInput
@@ -65,6 +69,8 @@ export default function RegulaFalsi() {
           placeholderTextColor="white"
           keyboardType="numeric"
           value={b}
+          fontWeight= "100"
+
         />
 
         <TextInput
@@ -74,6 +80,8 @@ export default function RegulaFalsi() {
           placeholderTextColor="white"
           keyboardType="numeric"
           value={tolerableError}
+          fontWeight= "100"
+
         />
 
         <TextInput
@@ -83,6 +91,8 @@ export default function RegulaFalsi() {
           placeholderTextColor="white"
           keyboardType="numeric"
           value={maxIterations}
+          fontWeight= "100"
+
         />
 
         <TouchableOpacity style={styles.submitButton} onPress={handleSubmit}>
@@ -103,11 +113,11 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '80%',
-    marginVertical: 120
+    marginVertical: 65,
   },
   heading: {
-    fontSize: 40,
-    fontWeight: 'bold',
+    fontSize: 30,
+    fontWeight: 'semi-bold',
     marginBottom: 40,
     color: 'white',
     alignSelf: 'center',
@@ -134,6 +144,6 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: 'white',
     fontSize: 20,
-    fontWeight: 'bold',
+    fontWeight: 'semi-bold',
   },
 });
