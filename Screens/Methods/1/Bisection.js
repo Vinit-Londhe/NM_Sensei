@@ -102,11 +102,11 @@ const styles = StyleSheet.create({
   },
   formContainer: {
     width: '80%',
-    marginVertical:70,
+    marginVertical:120
   },
   heading: {
-    fontSize: 25,
-    fontWeight: 'semi-bold',
+    fontSize: 40,
+    fontWeight: 'bold',
     marginBottom: 40,
     color: 'white',
     alignSelf:'center',
@@ -133,6 +133,6 @@ const styles = StyleSheet.create({
   submitButtonText: {
     color: 'white',
     fontSize: 20,
-    fontWeight: 'semi-bold',
+    fontWeight: 'bold',
   },
 });
