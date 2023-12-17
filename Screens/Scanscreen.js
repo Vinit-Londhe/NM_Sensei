@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StatusBar } from 'expo-status-bar';
-import { Button, StyleSheet, Text, Image, SafeAreaView, View } from 'react-native';
+import { Button, StyleSheet, Text, Image, SafeAreaView, View, TouchableOpacity } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
 
 const ScanScreen = () => {
@@ -52,19 +52,20 @@ const ScanScreen = () => {
       .then((result) => {
         setExtractedText(result['all_text']);
         sendTextToBackend(result['all_text']);
+
       })
       .catch((error) => console.log('error', error));
   };
 
   const sendTextToBackend = (text) => {
     // Replace the URL with your Flask API endpoint
-  
-    fetch('http://192.168.29.233:5000/process_text', {
+    console.log(text)
+    fetch('http://192.168.29.50:5000/process_ocr_text', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({'text': text}),
+      body: JSON.stringify({ 'text': text }),
     })
       .then((response) => response.json())
       .then((result) => {
@@ -75,10 +76,21 @@ const ScanScreen = () => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <Text style={styles.heading}>Welcome to GeeksforGeeks</Text>
-      <Text style={styles.heading2}>Image to Text App</Text>
-      <Button title="Pick an image from gallery" onPress={pickImageGallery} />
-      <Button title="Pick an image from camera" onPress={pickImageCamera} />
+      <Text style={styles.heading}>Pick a choice</Text>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={pickImageCamera}
+      >
+        <Text style={styles.buttonText}>Scan from Camera</Text>
+      </TouchableOpacity>
+      <TouchableOpacity
+        style={styles.button}
+        onPress={pickImageGallery}
+      >
+        <Text style={styles.buttonText}>Pick from gallery</Text>
+      </TouchableOpacity>
+      {/* <Button title="Pick an image from gallery" onPress={pickImageGallery} />
+      <Button title="Pick an image from camera" onPress={pickImageCamera} /> */}
       {image && (
         <Image
           source={{ uri: image }}
@@ -106,19 +118,33 @@ const ScanScreen = () => {
 };
 
 const styles = StyleSheet.create({
+
   container: {
     display: 'flex',
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: '#fff',
+    backgroundColor: 'black',
     height: '100%',
+  },
+  button: {
+
+    backgroundColor: '#2E4F4F',
+    width: 200,
+    height: 200,
+    justifyContent: 'center',
+    alignItems: 'center'
+
+  },
+  buttonText: {
+    color: 'white',
+    fontSize: 20
   },
   heading: {
     fontSize: 28,
     fontWeight: 'bold',
     marginBottom: 10,
-    color: 'green',
+    color: '#2E4F4F',
     textAlign: 'center',
   },
   heading2: {
