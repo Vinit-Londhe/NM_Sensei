@@ -1,155 +1,149 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import { Camera } from 'expo-camera';
+import React, { useState } from 'react';
+import { StatusBar } from 'expo-status-bar';
+import { Button, StyleSheet, Text, Image, SafeAreaView, View } from 'react-native';
 import * as ImagePicker from 'expo-image-picker';
-import { Image } from 'react-native';
-
 
 const ScanScreen = () => {
-    const cameraRef = useRef(null);
-    const [hasPermission, setHasPermission] = useState(null);
-    const [type, setType] = useState(Camera.Constants.Type.back);
-    const [capturedImage, setCapturedImage] = useState(null);
+  const [image, setImage] = useState(null);
+  const [extractedText, setExtractedText] = useState('');
+  const [apiResponse, setApiResponse] = useState(null);
 
-    useEffect(() => {
-        (async () => {
-            const { status } = await Camera.requestCameraPermissionsAsync();
-
-            setHasPermission(status === 'granted');
-        })();
-    }, []);
-
-    const takePicture = async () => {
-        if (cameraRef.current) {
-            const { uri } = await cameraRef.current.takePictureAsync();
-            setCapturedImage(uri);
-        }
-    };
-
-    const pickImage = async () => {
-        let result = await ImagePicker.launchCameraAsync({
-            mediaTypes: ImagePicker.MediaTypeOptions.Images,
-            allowsEditing: true,
-            aspect: [4, 3],
-            quality: 1,
-        });
-
-        if (!result.cancelled) {
-            setCapturedImage(result.uri);
-        }
-    };
-
-    const uploadImage = async () => {
-        if (!capturedImage) return;
-
-        const formData = new FormData();
-        formData.append('image', {
-            uri: capturedImage,
-            type: 'image/jpeg',
-            name: 'photo.jpg',
-        });
-
-        try {
-            const response = await fetch('YOUR_FLASK_API_ENDPOINT', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Content-Type': 'multipart/form-data',
-                    // Add any additional headers as needed
-                },
-            });
-
-            // Handle the response from your backend API
-            const result = await response.json();
-            console.log(result);
-        } catch (error) {
-            console.error('Error uploading image:', error);
-        }
-    };
-
-    if (hasPermission === null) {
-        return <View />;
+  const pickImageGallery = async () => {
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      base64: true,
+      allowsMultipleSelection: false,
+    });
+    if (!result.canceled) {
+      performOCR(result.assets[0]);
+      setImage(result.assets[0].uri);
     }
-    if (hasPermission === false) {
-        return <Text>No access to camera</Text>;
-    }
+  };
 
-    return (
-        <View style={styles.container}>
-            <Camera
-                ref={cameraRef}
-                style={styles.camera}
-                type={type}
-            >
-                <View style={styles.buttonContainer}>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={takePicture}
-                    >
-                        <Text style={styles.text}>Take Picture</Text>
-                    </TouchableOpacity>
-                    <TouchableOpacity
-                        style={styles.button}
-                        onPress={pickImage}
-                    >
-                        <Text style={styles.text}>Pick Image</Text>
-                    </TouchableOpacity>
-                </View>
-            </Camera>
-            {capturedImage && (
-                <View style={styles.previewContainer}>
-                    <Image source={{ uri: capturedImage }} style={styles.previewImage} />
-                    <TouchableOpacity onPress={uploadImage} style={styles.uploadButton}>
-                        <Text style={styles.text}>Upload Image</Text>
-                    </TouchableOpacity>
-                </View>
-            )}
+  const pickImageCamera = async () => {
+    let result = await ImagePicker.launchCameraAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      allowsEditing: true,
+      base64: true,
+      allowsMultipleSelection: false,
+    });
+    if (!result.canceled) {
+      performOCR(result.assets[0]);
+      setImage(result.assets[0].uri);
+    }
+  };
+
+  const performOCR = (file) => {
+    let myHeaders = new Headers();
+    myHeaders.append('apikey', 'FEmvQr5uj99ZUvk3essuYb6P5lLLBS20');
+    myHeaders.append('Content-Type', 'multipart/form-data');
+
+    let raw = file;
+    let requestOptions = {
+      method: 'POST',
+      redirect: 'follow',
+      headers: myHeaders,
+      body: raw,
+    };
+
+    fetch('https://api.apilayer.com/image_to_text/upload', requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        setExtractedText(result['all_text']);
+        sendTextToBackend(result['all_text']);
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  const sendTextToBackend = (text) => {
+    // Replace the URL with your Flask API endpoint
+  
+    fetch('http://192.168.29.233:5000/process_text', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({'text': text}),
+    })
+      .then((response) => response.json())
+      .then((result) => {
+        setApiResponse(result);
+      })
+      .catch((error) => console.log('error', error));
+  };
+
+  return (
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.heading}>Welcome to GeeksforGeeks</Text>
+      <Text style={styles.heading2}>Image to Text App</Text>
+      <Button title="Pick an image from gallery" onPress={pickImageGallery} />
+      <Button title="Pick an image from camera" onPress={pickImageCamera} />
+      {image && (
+        <Image
+          source={{ uri: image }}
+          style={{
+            width: 400,
+            height: 300,
+            objectFit: 'contain',
+          }}
+        />
+      )}
+
+      <Text style={styles.text1}>Extracted text:</Text>
+      <Text style={styles.text1}>{extractedText}</Text>
+
+      {apiResponse && (
+        <View style={styles.resultContainer}>
+          <Text style={styles.resultText}>API Response:</Text>
+          <Text style={styles.resultText}>{JSON.stringify(apiResponse)}</Text>
         </View>
-    );
+      )}
+
+      <StatusBar style="auto" />
+    </SafeAreaView>
+  );
 };
 
-
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    camera: {
-        flex: 1,
-    },
-    buttonContainer: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        marginBottom: 20,
-    },
-    button: {
-        backgroundColor: 'white',
-        padding: 15,
-        marginHorizontal: 10,
-        borderRadius: 5,
-    },
-    text: {
-        fontSize: 16,
-        color: 'black',
-    },
-    previewContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    previewImage: {
-        width: '100%',
-        height: '100%',
-        resizeMode: 'cover',
-    },
-    uploadButton: {
-        position: 'absolute',
-        bottom: 20,
-        backgroundColor: 'white',
-        padding: 15,
-        borderRadius: 5,
-    },
+  container: {
+    display: 'flex',
+    alignContent: 'center',
+    alignItems: 'center',
+    justifyContent: 'space-evenly',
+    backgroundColor: '#fff',
+    height: '100%',
+  },
+  heading: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: 'green',
+    textAlign: 'center',
+  },
+  heading2: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    marginBottom: 10,
+    color: 'black',
+    textAlign: 'center',
+  },
+  text1: {
+    fontSize: 16,
+    marginBottom: 10,
+    color: 'black',
+    fontWeight: 'bold',
+  },
+  resultContainer: {
+    marginTop: 20,
+    padding: 10,
+    backgroundColor: '#eee',
+    borderRadius: 8,
+  },
+  resultText: {
+    fontSize: 16,
+    color: 'black',
+  },
 });
 
 export default ScanScreen;
-
-
