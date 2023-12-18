@@ -10,7 +10,7 @@ const MainScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate('Home')}
             >
                 <Image
-                    source={require('./icon/scanicon.png')}
+                    source={require('./icon/home.png')}
                     style={styles.icon}
                 />
             </TouchableOpacity>
@@ -19,7 +19,7 @@ const MainScreen = ({ navigation }) => {
                 onPress={() => navigation.navigate('scan')}
             >
                 <Image
-                    source={require('./icon/scanicon.png')}
+                    source={require('./icon/scan.png')}
                     style={styles.icon}
                 />
             </TouchableOpacity>
