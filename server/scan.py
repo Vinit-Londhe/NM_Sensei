@@ -15,21 +15,27 @@ def process_text():
     print('calling...............')
     try:
         data = request.json
-        extracted_text = data.get('extractedText', '')
+        extracted_text = data.get('extractedText')
         print('calling...............')
+        print(extracted_text)
         # Call the OpenAI API
-        prom="you are numrical analysis calculator calculate"+extracted_text
-        chat_completion = client.chat.completions.create(
-            
-            messages=[
-                # {"role":"system","content":prom},
-                {"role": "assistant", "content": prom},
-                {"role": "assistant", "content": prom},
-            ],
-            model="gpt-3.5-turbo",
+        prom=extracted_text
+        response = client.chat.completions.create(
+                    model="gpt-3.5-turbo-16k",
+                    messages=[
+                        {
+                        "role": "user",
+                        "content": prom,
+                        }
+                    ],
+                    temperature=1,
+                    max_tokens=3000,
+                    top_p=1,
+                    frequency_penalty=0,
+                    presence_penalty=0
         )
 
-        result = chat_completion
+        result=response.choices[0].message.content
         print(result)
         return jsonify({'result': result})
 
