@@ -15,9 +15,10 @@ import NRResult from './Screens/Methods/1/NRResult';
 import ScanScreen from './Screens/Scanscreen';
 import MainScreen from './Screens/Mainhome';
 import EluersMethod from './Screens/Methods/EluersMethod';
-import Elue from './Screens/Methods/2/Eluers';
+import Elue from './Screens/Methods/Eluers';
 import GuassElimination from './Screens/Methods/2/GuassElimination';
 import GuassJorden from './Screens/Methods/2/GuassJorden';
+import ScanResult from './Screens/scanResult';
 
 
 const Stack = createNativeStackNavigator();
@@ -34,6 +35,8 @@ export default function App() {
           <Stack.Screen name="NR" component={NewtonRaphson} options={{ headerShown: false }} />
           <Stack.Screen name="NRR" component={NRResult} options={{ headerShown: false }} />
           <Stack.Screen name="scan" component={ScanScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="scanR" component={ScanResult} options={{ headerShown: false }} />
+
           <Stack.Screen name="mainH" component={MainScreen} options={{ headerShown: false }} />
           <Stack.Screen name="RF" component={RegulaFalsi} options={{ headerShown: false }} />
           <Stack.Screen name="RFResult" component={RFResult} options={{ headerShown: false }} />
