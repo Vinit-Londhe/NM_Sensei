@@ -14,11 +14,15 @@ import RFResult from './Screens/Methods/1/RFResult';
 import NRResult from './Screens/Methods/1/NRResult';
 import ScanScreen from './Screens/Scanscreen';
 import MainScreen from './Screens/Mainhome';
-import EluersMethod from './Screens/Methods/EluersMethod';
+//import EluersMethod from './Screens/Methods/EluersMethod';
 import Elue from './Screens/Methods/Eluers';
 import GuassElimination from './Screens/Methods/2/GuassElimination';
 import GuassJorden from './Screens/Methods/2/GuassJorden';
 import ScanResult from './Screens/scanResult';
+//import JacobisIteration from './Screens/Methods/JacobisIteration';
+import GuassSeidal from './Screens/Methods/2/GuassSeidal';
+import JocobisIteration from './Screens/Methods/2/JocobisIteraction';
+import Relaxiation from './Screens/Methods/2/Relaxiation';
 
 
 const Stack = createNativeStackNavigator();
@@ -44,6 +48,9 @@ export default function App() {
           <Stack.Screen name="Eluers" component={Elue} options={{ headerShown: false }} />
           <Stack.Screen name="GE" component={GuassElimination} options={{ headerShown: false }} />
           <Stack.Screen name="GJ" component={GuassJorden} options={{ headerShown: false }} />
+          <Stack.Screen name="JocobisIteration" component={JocobisIteration} options={{ headerShown: false }} />
+          <Stack.Screen name="GuassSeidal" component={GuassSeidal} options={{ headerShown: false }} />
+          <Stack.Screen name="Relaxiation" component={Relaxiation} options={{ headerShown: false }} />
 
 
         </Stack.Navigator>

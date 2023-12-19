@@ -1,6 +1,8 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { useNavigation } from '@react-navigation/native';
+import JocobisIteration from '../Methods/2/JocobisIteraction';
+import GuassSeidal from '../Methods/2/GuassSeidal';
 
 
 export default function Utwo() {
@@ -16,6 +18,23 @@ export default function Utwo() {
     navigation.navigate('GJ' as never);
 
   };
+  
+  const handleJocobisIteration = () => {
+    navigation.navigate('JocobisIteration' as never);
+
+  };
+
+  const handleGuassSeidal = () => {
+    navigation.navigate('GuassSeidal' as never);
+
+  };
+
+  const handleRelaxiation = () => {
+    navigation.navigate('Relaxiation' as never);
+
+  };
+  
+  
 
   return (
     <View style={styles.container}>
@@ -27,13 +46,13 @@ export default function Utwo() {
       <TouchableOpacity style={styles.button} onPress={handleGJ}>
         <Text style={styles.buttonText}>Gauss Jordan</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleJocobisIteration}>
         <Text style={styles.buttonText}>Jacobi’s Iteration</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}  onPress={handleGuassSeidal}>
         <Text style={styles.buttonText}>Gauss Seidal</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button}  onPress={handleRelaxiation}>
         <Text style={styles.buttonText}>Relaxiation</Text>
       </TouchableOpacity>
       </ScrollView>
@@ -63,7 +82,7 @@ const styles = StyleSheet.create({
         
       },
       button: {
-        backgroundColor: '#2E4F4F',
+        backgroundColor: '#F2D5F0',
         width: 110, // Customize the size of the button
         height: 110, // Make the button square
         marginHorizontal: 8, // Add some space between buttons
