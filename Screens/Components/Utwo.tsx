@@ -1,15 +1,30 @@
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native'
 import React from 'react'
+import { useNavigation } from '@react-navigation/native';
+
 
 export default function Utwo() {
+
+  const navigation = useNavigation();
+
+  const handleGEPress = () => {
+    // Navigate to the GE screen
+    navigation.navigate('GE' as never);
+
+  };
+  const handleGJ = () => {
+    navigation.navigate('GJ' as never);
+
+  };
+
   return (
     <View style={styles.container}>
     <Text style={styles.heading_text}>2. Linear Simultenous Equation</Text>
     <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleGEPress}>
         <Text style={styles.buttonText}>Gauss Elimination</Text>
       </TouchableOpacity>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={handleGJ}>
         <Text style={styles.buttonText}>Gauss Jordan</Text>
       </TouchableOpacity>
       <TouchableOpacity style={styles.button}>

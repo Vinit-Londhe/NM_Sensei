@@ -14,6 +14,10 @@ import RFResult from './Screens/Methods/1/RFResult';
 import NRResult from './Screens/Methods/1/NRResult';
 import ScanScreen from './Screens/Scanscreen';
 import MainScreen from './Screens/Mainhome';
+import EluersMethod from './Screens/Methods/EluersMethod';
+import Elue from './Screens/Methods/2/Eluers';
+import GuassElimination from './Screens/Methods/2/GuassElimination';
+import GuassJorden from './Screens/Methods/2/GuassJorden';
 
 
 const Stack = createNativeStackNavigator();
@@ -31,10 +35,12 @@ export default function App() {
           <Stack.Screen name="NRR" component={NRResult} options={{ headerShown: false }} />
           <Stack.Screen name="scan" component={ScanScreen} options={{ headerShown: false }} />
           <Stack.Screen name="mainH" component={MainScreen} options={{ headerShown: false }} />
-
           <Stack.Screen name="RF" component={RegulaFalsi} options={{ headerShown: false }} />
           <Stack.Screen name="RFResult" component={RFResult} options={{ headerShown: false }} />
           <Stack.Screen name="Result" component={ResultScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Eluers" component={Elue} options={{ headerShown: false }} />
+          <Stack.Screen name="GE" component={GuassElimination} options={{ headerShown: false }} />
+          <Stack.Screen name="GJ" component={GuassJorden} options={{ headerShown: false }} />
 
 
         </Stack.Navigator>
