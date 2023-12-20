@@ -8,7 +8,7 @@ const ScanResult = ({ route }) => {
 
     const handleSubmit = async () => {
         try {
-            const response = await fetch('http://192.168.29.50:5000/api/scan', {
+            const response = await fetch('http://192.168.29.233:5000/api/process_text', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
