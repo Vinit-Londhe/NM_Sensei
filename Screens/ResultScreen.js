@@ -6,11 +6,11 @@ const ResultScreen = ({ route }) => {
 
   const renderItem = ({ item }) => (
     <View style={styles.row}>
-      <Text style={[styles.cell, { backgroundColor: '#001524' }]}>{item.iteration}</Text>
-      <Text style={[styles.cell, { backgroundColor: 'black' }]}>{item.a}</Text>
-      <Text style={[styles.cell, { backgroundColor: '#001524' }]}>{item.b}</Text>
-      <Text style={[styles.cell, { backgroundColor: 'black' }]}>{item.c}</Text>
-      <Text style={[styles.cell, { backgroundColor: '#001524' }]}>{item.fc}</Text>
+      <Text style={[styles.cell, { backgroundColor: '#52A999' }]}>{item.iteration}</Text>
+      <Text style={[styles.cell, { backgroundColor: '#131314' }]}>{item.a}</Text>
+      <Text style={[styles.cell, { backgroundColor: '#52A999' }]}>{item.b}</Text>
+      <Text style={[styles.cell, { backgroundColor: '#131314' }]}>{item.c}</Text>
+      <Text style={[styles.cell, { backgroundColor: '#52A999' }]}>{item.fc}</Text>
     </View>
   );
 
@@ -26,11 +26,11 @@ const ResultScreen = ({ route }) => {
         renderItem={renderItem}
         ListHeaderComponent={() => (
           <View style={styles.headerRow}>
-            <Text style={[styles.headerCell, { backgroundColor: '#001524' }]}>iteration</Text>
-            <Text style={[styles.headerCell, { backgroundColor: 'black' }]}>a</Text>
-            <Text style={[styles.headerCell, { backgroundColor: '#001524' }]}>b</Text>
-            <Text style={[styles.headerCell, { backgroundColor: 'black' }]}>c</Text>
-            <Text style={[styles.headerCell, { backgroundColor: '#001524' }]}>fc</Text>
+            <Text style={[styles.headerCell, { backgroundColor: '#52A999' }]}>iteration</Text>
+            <Text style={[styles.headerCell, { backgroundColor: '#131314' }]}>a</Text>
+            <Text style={[styles.headerCell, { backgroundColor: '#52A999' }]}>b</Text>
+            <Text style={[styles.headerCell, { backgroundColor: '#131314' }]}>c</Text>
+            <Text style={[styles.headerCell, { backgroundColor: '#52A999' }]}>fc</Text>
           </View>
         )}
       />
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#131314',
   },
   resultText: {
     color: 'white',

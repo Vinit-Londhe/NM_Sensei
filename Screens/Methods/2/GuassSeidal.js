@@ -42,21 +42,21 @@ export default function GuassSeidal() {
         <TextInput
           style={styles.input}
           onChangeText={onChangeFunctionText}
-          placeholder="Enter Function 1"
+          placeholder="Enter Row 1"
           placeholderTextColor="white"
         />
 
 <TextInput
           style={styles.input}
           onChangeText={onChangeFunctionText1}
-          placeholder="Enter Function 2"
+          placeholder="Enter Row 2"
           placeholderTextColor="white"
         />
         
         <TextInput
           style={styles.input}
           onChangeText={onChangeFunctionText2}
-          placeholder="Enter Function 3"
+          placeholder="Enter Row 3"
           placeholderTextColor="white"
         />
 

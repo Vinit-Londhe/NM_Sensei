@@ -8,7 +8,7 @@ import Ufive from './Components/Ufive'
 
 export const Home = () => {
   return (
-    <SafeAreaView style={{ backgroundColor: '#292929', flex: 1 }}>
+    <SafeAreaView style={{ backgroundColor: '#131314', flex: 1 }}>
       <ScrollView>
         <Uone/>
         <Utwo/>

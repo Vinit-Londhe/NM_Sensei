@@ -54,7 +54,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
   },
   button: {
-    backgroundColor: '#121212',
+    backgroundColor: '#52A999',
     width: 110,
     height: 110,
     marginHorizontal: 8,
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   },
   buttonText: {
     fontSize: 16,
-    color: 'white',
+    color: 'black',
     fontWeight: 'bold',
   },
 });

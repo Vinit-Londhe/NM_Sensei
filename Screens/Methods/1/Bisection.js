@@ -95,7 +95,7 @@ export default function Bisection() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: 'black',
+    backgroundColor: '#131314',
     alignItems: 'center',
     
   
@@ -117,14 +117,14 @@ const styles = StyleSheet.create({
   input: {
     height: 40,
     width: '100%',
-    borderColor: '#2E4F4F',
+    borderColor: '#52A999',
     borderWidth: 1,
     marginBottom: 20,
     paddingLeft: 10,
     color: 'white',
   },
   submitButton: {
-    backgroundColor: '#2E4F4F',
+    backgroundColor: '#52A999',
     padding: 10,
     borderRadius: 8,
     width: '100%',

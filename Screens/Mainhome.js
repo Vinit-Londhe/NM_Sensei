@@ -32,12 +32,13 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-        backgroundColor: 'black'
+        backgroundColor: '#131314'
     },
     button: {
         width: 200,
         height: 200,
-        backgroundColor: '#2E4F4F', // Change the background color as needed
+        backgroundColor: '#52A999',
+     // Change the background color as needed
         justifyContent: 'center',
         alignItems: 'center',
         borderRadius: 10,

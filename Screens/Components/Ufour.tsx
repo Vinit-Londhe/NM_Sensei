@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
         paddingvertical: 50
       },
       button: {
-        backgroundColor: '#2E4F4F',
+        backgroundColor: '#52A999',
         width: 110, // Customize the size of the button
         height: 110, // Make the button square
         marginHorizontal: 8, // Add some space between buttons
@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
       },
       buttonText: {
         fontSize: 16,
-        color: 'white',
+        color: 'black',
         fontWeight: 'bold',
       },
 })
