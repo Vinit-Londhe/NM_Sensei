@@ -13,7 +13,7 @@ export default function RegulaFalsi() {
 
   const handleSubmit = async () => {
     try {
-      const response = await fetch('http://172.20.10.5:5000/api/false_position', {
+      const response = await fetch('http://192.168.29.233:5000/api/false_position', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

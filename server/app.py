@@ -54,7 +54,7 @@ def bisection_method(func, a, b, tolerance, max_iterations):
     })
 
     answer_iteration = iteration - 1  # Answer found at the previous iteration
-    message = f"Answer found at iteration {answer_iteration}"
+    message = f"Answer found  {c} \n at {answer_iteration} th Iteration "
 
     return results, answer_iteration, message
 
@@ -97,7 +97,7 @@ def false_position_method(func, a, b, tolerance, max_iterations):
             a = c
 
     answer_iteration = iteration - 1  # Answer found at the previous iteration
-    message = f"Answer found at iteration {answer_iteration}"
+    message = f"Answer found  {c} \n at {answer_iteration} th Iteration"
 
     return results, answer_iteration, message
 
