@@ -245,10 +245,12 @@ def perform_newton_raphson():
 
 
 ########################UNIT2################################
+def format_matrix(matrix):
+     return '\n'.join([' '.join(map(str, row)) for row in matrix])
 
 def gaussian_elimination(matrix):
     n = len(matrix)
-    steps = []
+    steps = [format_matrix(matrix.copy())]
 
     for i in range(n):
         # Check if the diagonal element is zero, and swap rows if needed
@@ -256,7 +258,7 @@ def gaussian_elimination(matrix):
             for k in range(i + 1, n):
                 if matrix[k][i] != 0:
                     matrix[i], matrix[k] = matrix[k], matrix[i]
-                    steps.append(matrix.copy())  # Append a copy of the current matrix
+                    steps.append(format_matrix(matrix.copy()))
                     break
             else:
                 raise ValueError("Matrix is singular and cannot be solved.")
@@ -266,7 +268,7 @@ def gaussian_elimination(matrix):
         for j in range(i, n + 1):
             matrix[i][j] /= divisor
 
-        steps.append(matrix.copy())  # Append a copy of the current matrix
+        steps.append(format_matrix(matrix.copy()))
 
         # Make the elements below the diagonal equal to 0
         for k in range(i + 1, n):
@@ -274,7 +276,7 @@ def gaussian_elimination(matrix):
             for j in range(i, n + 1):
                 matrix[k][j] -= factor * matrix[i][j]
 
-        steps.append(matrix.copy())  # Append a copy of the current matrix
+        steps.append(format_matrix(matrix.copy()))
 
     # Back-substitution
     solution = [0] * n
@@ -286,11 +288,9 @@ def gaussian_elimination(matrix):
     return steps, solution
 
 def format_solution(solution):
-    return {
-        "x": solution[0],
-        "y": solution[1],
-        "z": solution[2] if len(solution) == 3 else None
-    }
+    variable_names = ['x', 'y', 'z']
+    result = ', '.join([f"{variable_names[i]} = {solution[i]}" for i in range(len(solution))])
+    return f"Solution: {result}"
 
 @app.route('/solve_system', methods=['POST'])
 def solve_system():
@@ -312,9 +312,66 @@ def solve_system():
     except Exception as e:
         return jsonify({"error": str(e)})
 
+
+
+
+
+
 #////////////////////Guass Jordon//////////////////////////
 
+def gauss_jordan_elimination(matrix):
+    n = len(matrix)
+    steps = [format_matrix(matrix.copy())]
 
+    for i in range(n):
+        # Make the diagonal elements 1
+        divisor = matrix[i][i]
+        for j in range(i, n + 1):
+            matrix[i][j] /= divisor
+
+        steps.append(format_matrix(matrix.copy()))
+
+        # Make the elements above and below the diagonal equal to 0
+        for k in range(n):
+            if k != i:
+                factor = matrix[k][i]
+                for j in range(i, n + 1):
+                    matrix[k][j] -= factor * matrix[i][j]
+
+        steps.append(format_matrix(matrix.copy()))
+
+    # Extract the solution
+    solution = [row[-1] for row in matrix]
+
+    return steps, solution
+
+def format_matrix(matrix):
+    return '\n'.join([' '.join(map(str, row)) for row in matrix])
+
+def format_solution(solution):
+    variable_names = ['x', 'y', 'z']
+    result = ', '.join([f"{variable_names[i]} = {solution[i]}" for i in range(len(solution))])
+    return f"Solution: {result}"
+
+@app.route('/solve_system_gauss_jordan', methods=['POST'])
+def solve_system_gauss_jordan():
+    try:
+        data = request.json
+        rows = [list(map(float, row.split(', '))) for row in data.values()]
+
+        # Augment the matrix with the constants on the right side
+        augmented_matrix = [row[:-1] + [row[-1]] for row in rows]
+
+        # Solve the system using Gauss-Jordan elimination and get steps
+        try:
+            steps, solution = gauss_jordan_elimination(augmented_matrix)
+            formatted_solution = format_solution(solution)
+            return jsonify({"steps": steps, "solution": formatted_solution})
+        except ValueError as e:
+            return jsonify({"error": str(e)})
+
+    except Exception as e:
+        return jsonify({"error": str(e)})
 
 
 
