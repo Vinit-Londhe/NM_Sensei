@@ -12,29 +12,29 @@ export default function NewtonRaphson() {
   const navigation = useNavigation(); // Use the useNavigation hook to get the navigation object
 
   const handleSubmit = async () => {
-    // try {
-    //   const response = await fetch('http://192.168.29.233:5000/api/bisection', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       func,
-    //       a: parseFloat(a),
-    //       b: parseFloat(b),
-    //       tolerance: parseFloat(tolerableError),
-    //       maxIterations: parseInt(maxIterations),
-    //     }),
-    //   });
+    try {
+      const response = await fetch('http://192.168.29.233:5000/api/bisection', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          func,
+          a: parseFloat(a),
+          b: parseFloat(b),
+          tolerance: parseFloat(tolerableError),
+          maxIterations: parseInt(maxIterations),
+        }),
+      });
 
-    //   const result = await response.json();
-    //   console.log('Result', result)
+      const result = await response.json();
+      console.log('Result', result)
     navigation.navigate('NRR');
     // here I want to go to the next screen with result
 
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   };
 
   return (
