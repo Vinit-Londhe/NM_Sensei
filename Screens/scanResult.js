@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-
+import { useNavigation } from '@react-navigation/native';
 const ScanResult = ({ route }) => {
     const { extractedText } = route.params;
     const [inputValue, setInputValue] = useState('');
     const [result, setResult] = useState(null);
-
+    const navigation = useNavigation();
     const handleSubmit = async () => {
         try {
             const response = await fetch('http://192.168.29.233:5000/api/process_text', {
@@ -21,7 +21,11 @@ const ScanResult = ({ route }) => {
 
             if (response.ok) {
                 const responseData = await response.json();
+                console.log('result',{responseData})
                 setResult(`API Response: ${responseData}`);
+                navigation.navigate('ScanF', {responseData});
+
+
             } else {
                 console.error('Error calling API:', response.status);
                 setResult('Error calling API');

@@ -1,34 +1,44 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, SafeAreaView, TextInput, TouchableOpacity } from 'react-native';
-import { useNavigation } from '@react-navigation/native'; // Import useNavigation hook from React Navigation
+import { useNavigation } from '@react-navigation/native';
 
 export default function GuassElimination() {
   const [func, onChangeFunctionText] = useState('');
   const [func1, onChangeFunctionText1] = useState('');
   const [func2, onChangeFunctionText2] = useState('');
 
-  const navigation = useNavigation(); // Use the useNavigation hook to get the navigation object
+  const navigation = useNavigation();
+
+  const sanitizeInput = (input) => {
+    // Split the input values and format the rows
+    const values = input.split(',').map(value => value.trim());
+    return values.join(', ');
+  };
+
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://nmsensei.pythonanywhere.com/api/bisection', {
+      // Sanitize input before sending
+      const sanitizedFunc = sanitizeInput(func);
+      const sanitizedFunc1 = sanitizeInput(func1);
+      const sanitizedFunc2 = sanitizeInput(func2);
+
+      console.log('Sending request...');
+      const response = await fetch('http://192.168.29.233:5000/api/ge', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          func,
-          a: parseFloat(a),
-          b: parseFloat(b),
-          tolerance: parseFloat(tolerableError),
-          maxIterations: parseInt(maxIterations),
+          "row1": sanitizedFunc,
+          "row2": sanitizedFunc1,
+          "row3": sanitizedFunc2
         }),
       });
-
+      
       const result = await response.json();
-      console.log('Result',result)
-      navigation.navigate('Result',{result});
-      // here I want to go to the next screen with result
-  
+      console.log('Result:', result);
+
+      navigation.navigate('unit2result', { result });
     } catch (error) {
       console.error('Error:', error);
     }
@@ -37,7 +47,7 @@ export default function GuassElimination() {
   return (
     <SafeAreaView style={styles.container}>
       <View style={styles.formContainer}>
-        <Text style={styles.heading}> GuassElimination Method</Text>
+        <Text style={styles.heading}> Gauss Elimination Method</Text>
 
         <TextInput
           style={styles.input}
@@ -46,7 +56,7 @@ export default function GuassElimination() {
           placeholderTextColor="white"
         />
 
-<TextInput
+        <TextInput
           style={styles.input}
           onChangeText={onChangeFunctionText1}
           placeholder="Enter Row 2"
@@ -67,7 +77,6 @@ export default function GuassElimination() {
     </SafeAreaView>
   );
 }
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,

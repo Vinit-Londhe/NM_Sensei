@@ -17,16 +17,25 @@ def process_text():
     try:
         data = request.json
         extracted_text = data.get('extractedText')
+        num=data.get('inputValue')
+        print(num)
         print('calling...............')
         print(extracted_text)
         # Call the OpenAI API
         prom=extracted_text
+        
+        
+        print('calling GPT-----------------')
         response = client.chat.completions.create(
                     model="gpt-3.5-turbo-16k",
                     messages=[
                         {
+                        "role": "system",
+                        "content": "you are numerical analysis calculator whateever user sends question answer accroding with upto 3 decimal give answer accurate dont give extrad details just a"
+                        },
+                        {
                         "role": "user",
-                        "content": prom,
+                        "content": "Find a root of an equation f(x)=x3-x-1 using False Position method upto decimals"
                         }
                     ],
                     temperature=1,

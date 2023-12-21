@@ -4,6 +4,10 @@ import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { View, Text, SafeAreaView, Button } from 'react-native';
+
+
+
+
 import { Home } from './Screens/Home';
 import Bisection from './Screens/Methods/1/Bisection';
 import Uone from './Screens/Components/Uone';
@@ -23,6 +27,8 @@ import ScanResult from './Screens/scanResult';
 import GuassSeidal from './Screens/Methods/2/GuassSeidal';
 import JocobisIteration from './Screens/Methods/2/JocobisIteraction';
 import Relaxiation from './Screens/Methods/2/Relaxiation';
+import U2Result from './Screens/Methods/2/U2result';
+import ScanFinal from './Screens/scanFinal';
 
 
 const Stack = createNativeStackNavigator();
@@ -51,6 +57,8 @@ export default function App() {
           <Stack.Screen name="JocobisIteration" component={JocobisIteration} options={{ headerShown: false }} />
           <Stack.Screen name="GuassSeidal" component={GuassSeidal} options={{ headerShown: false }} />
           <Stack.Screen name="Relaxiation" component={Relaxiation} options={{ headerShown: false }} />
+          <Stack.Screen name="unit2result" component={U2Result} options={{ headerShown: false }} />
+          <Stack.Screen name="ScanF" component={ScanFinal} options={{ headerShown: false }} />
 
 
         </Stack.Navigator>

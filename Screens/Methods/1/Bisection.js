@@ -12,7 +12,7 @@ export default function Bisection() {
   const navigation = useNavigation(); // Use the useNavigation hook to get the navigation object
   const handleSubmit = async () => {
     try {
-      const response = await fetch('https://nmsensei.pythonanywhere.com/api/bisection', {
+      const response = await fetch('localhost/api/bisection', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

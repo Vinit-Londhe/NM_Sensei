@@ -14,7 +14,7 @@ CORS(app)  # Enable CORS for all routes
 
 
 
-##################Bisection##################
+################## Bisection ##################
 def bisection_method(func, a, b, tolerance, max_iterations):
     iteration = 0
     results = []
@@ -91,7 +91,7 @@ def perform_bisection():
 
 
 
-##################Regula Falsi ##########################
+################## Regula Falsi ##########################
 def false_position_method(func, a, b, tolerance, max_iterations):
     iteration = 0
     results = []
@@ -163,7 +163,7 @@ def perform_false_position():
 
 
 
-#-----------------------Newton Raphson-------------------------
+#---------------------- Newton Raphson ------------------------
 
 def newton_raphson_method(func, x0, tolerance, max_iterations):
     iteration = 0
@@ -287,14 +287,20 @@ def gaussian_elimination(matrix):
 
     return steps, solution
 
+@app.route('/hi',methods=['POST'])
+def greet():
+    print('hey from server')
+    return jsonify ("greeting from backend")
+
 def format_solution(solution):
     variable_names = ['x', 'y', 'z']
     result = ', '.join([f"{variable_names[i]} = {solution[i]}" for i in range(len(solution))])
     return f"Solution: {result}"
 
-@app.route('/solve_system', methods=['POST'])
+@app.route('/api/ge', methods=['POST'])
 def solve_system():
     try:
+        print('heyyyy')
         data = request.json
         rows = [list(map(float, row.split(', '))) for row in data.values()]
 
@@ -311,7 +317,7 @@ def solve_system():
 
     except Exception as e:
         return jsonify({"error": str(e)})
-
+    
 
 
 
@@ -374,6 +380,7 @@ def solve_system_gauss_jordan():
         return jsonify({"error": str(e)})
 
 
+#-----------------------Guss Seidal----------------------------
 
 
 
