@@ -58,28 +58,14 @@ const ScanScreen = () => {
       .then((response) => response.json())
       .then((result) => {
         setExtractedText(result['all_text']);
+        
         // sendTextToBackend(result['all_text']);
         navigateToScanResult(result['all_text']);
       })
       .catch((error) => console.log('error', error));
   };
 
-  // const sendTextToBackend = (text) => {
-  //   // Replace the URL with your Flask API endpoint
-  //   console.log(text);
-  //   fetch('http://192.168.29.50:5000/process_ocr_text', {
-  //     method: 'POST',
-  //     headers: {
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify({ text: text }),
-  //   })
-  //     .then((response) => response.json())
-  //     .then((result) => {
-  //       setApiResponse(result);
-  //     })
-  //     .catch((error) => console.log('error', error));
-  // };
+
 
   return (
     <SafeAreaView style={styles.container}>
@@ -109,13 +95,13 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     alignItems: 'center',
     justifyContent: 'space-evenly',
-    backgroundColor: 'black',
+    backgroundColor: '#131314',
     height: '100%',
   },
   button: {
     width: 200,
     height: 200,
-    backgroundColor: '#2E4F4F',
+    backgroundColor: '#52A999',
     justifyContent: 'center',
     alignItems: 'center',
     borderRadius: 100,
