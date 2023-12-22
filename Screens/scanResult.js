@@ -42,8 +42,9 @@ const ScanResult = ({ route }) => {
 
             <TextInput
                 style={styles.input}
-                placeholder="Enter an integer"
-                keyboardType="numeric"
+                placeholder="Enter Tollerable Error"
+                color='white'
+                placeholderTextColor={'white'}
                 onChangeText={(text) => setInputValue(text)}
                 value={inputValue}
             />
