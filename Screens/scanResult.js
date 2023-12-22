@@ -15,7 +15,7 @@ const ScanResult = ({ route }) => {
                 },
                 body: JSON.stringify({
                     extractedText,
-                    inputValue: parseInt(inputValue),
+                    inputValue,
                 }),
             });
 

@@ -19,6 +19,7 @@ const ScanFinal = ({ route }) => {
 const styles = StyleSheet.create({
     scrollView: {
         flex: 1,
+        backgroundColor:'#282c34'
     },
     container: {
         flex: 1,
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         marginBottom: 20,
-        color: 'white',
+        color: 'green',
     },
     extractedText: {
         fontSize: 18,
